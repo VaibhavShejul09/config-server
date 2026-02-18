@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false
+          lower-case-service-id: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}                    
+      #for docker       http://discovery-server:8761/eureka
+
+  instance:
+    prefer-ip-address: true
+
+
+logging:
+  level:
+    # Gateway internals
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.gateway.handler: TRACE
+    org.springframework.cloud.gateway.handler.FilteringWebHandler: TRACE
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE
+
+    # Reactor Netty (HTTP client inside gateway)
+    reactor.netty.http.client: DEBUG
+    reactor.netty.channel: DEBUG
+
+    # WebFlux / Spring Web logging
+    org.springframework.web: DEBUG
+    org.springframework.validation: DEBUG
+    org.springframework.http.codec: DEBUG
+
+
+
+metrics:
+  export:
+    simple:
+      enabled: true
+
+observation:
+    enabled: true
