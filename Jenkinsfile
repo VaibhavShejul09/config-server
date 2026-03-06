@@ -3,6 +3,6 @@
 microservicePipeline(
 
 serviceName : "config-server",
-dockerImage : "shejulv088/jenkins_config_server"
+dockerImage : "shejulv088/final_config_server"
 
 )
